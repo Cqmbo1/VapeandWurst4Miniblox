@@ -114,6 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
         </style>
     `;
 
+    document.appendChild(Gui);
+
     document.querySelectorAll('.module-selector').forEach(selected => {
         selected.addEventListener('click', function () {
             const moduleName = this.getAttribute('data-module');
