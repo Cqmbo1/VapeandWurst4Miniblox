@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </style>
     `;
 
-    document.appendChild(Gui);
+    document.body.appendChild(Gui);
 
     document.querySelectorAll('.module-selector').forEach(selected => {
         selected.addEventListener('click', function () {
