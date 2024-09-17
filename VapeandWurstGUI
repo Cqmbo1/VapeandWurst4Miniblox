@@ -1,4 +1,4 @@
- document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const Gui = document.createElement('div');
     Gui.id = 'Gui';
     Gui.innerHTML = `
@@ -40,19 +40,19 @@
             </div>
             <div class="module">
                 <span class="module-header">Other</span>
-                <span class="module-selector">TextGUI</span>
-                <span class="module-selector">AutoRespawn</span>
-                <span class="module-selector">AutoArmor</span>
-                <span class="module-selector">AutoCraft</span>
-                <span class="module-selector">Timer</span>
-                <span class="module-selector">Phase</span>
-                <span class="module-selector">AntiBan</span>
-                <span class="module-selector">AutoRejoin</span>
-                <span class="module-selector">AutoQueue</span>
-                <span class="module-selector">AutoVote</span>
-                <span class="module-selector">ChatDisabler</span>
-                <span class="module-selector">FilterBypass</span>
-                <span class="module-selector">SurvivalMode</span>
+                <span class="module-selector" data-module="TextGUI">TextGUI</span>
+                <span class="module-selector" data-module="AutoRespawn">AutoRespawn</span>
+                <span class="module-selector" data-module="AutoArmor">AutoArmor</span>
+                <span class="module-selector" data-module="AutoCraft">AutoCraft</span>
+                <span class="module-selector" data-module="Timer">Timer</span>
+                <span class="module-selector" data-module="Phase">Phase</span>
+                <span class="module-selector" data-module="AntiBan">AntiBan</span>
+                <span class="module-selector" data-module="AutoRejoin">AutoRejoin</span>
+                <span class="module-selector" data-module="AutoQueue">AutoQueue</span>
+                <span class="module-selector" data-module="AutoVote">AutoVote</span>
+                <span class="module-selector" data-module="ChatDisabler">ChatDisabler</span>
+                <span class="module-selector" data-module="FilterBypass">FilterBypass</span>
+                <span class="module-selector" data-module="SurvivalMode">SurvivalMode</span>
             </div>
             <div class="selected-modules">
             </div>
@@ -115,16 +115,18 @@
     `;
 
     document.body.appendChild(Gui);
-});
 
-document.querySelectorAll('.module-selector').forEach(selected => {
-    selected.addEventListener('click', function() {
-        const moduleName = this.getAttribute('data-module');
-        enabledmodules[moduleName] = !enabledmodules[moduleName];
-        if (enabledmodules[moduleName]) {
-            enabledmodules[moduleName].toggle();
+    document.querySelectorAll('.module-selector').forEach(selected => {
+        selected.addEventListener('click', function() {
+            const moduleName = this.getAttribute('data-module');
+            if (!enabledModules[moduleName]) {
+                enabledModules[moduleName] = new Module(moduleName, () => {
+                    console.log(`${moduleName} toggled`);
+                });
+            }
+            enabledModules[moduleName].toggle();
             this.classList.toggle('selected');
-        }
+        });
     });
 });
 
@@ -660,16 +662,7 @@ addReplacement('document.addEventListener("contextmenu",j=>j.preventDefault());'
                 return this.options[name];
             }
         }
-        // Attach click event listeners to each module selector
-        document.querySelectorAll('.module-selector').forEach(selector => {
-            selector.addEventListener('click', function() {
-                const moduleName = this.getAttribute('data-module');
-                if (modules[moduleName]) {
-                    modules[moduleName].toggle();
-                    this.classList.toggle('selected', modules[moduleName].enabled);
-                }
-            });
-        });
+    })();
 
 			let clickDelay = Date.now();
 			new Module("AutoClicker", function(callback) {
