@@ -120,10 +120,10 @@
 document.querySelectorAll('.module-selector').forEach(selected => {
     selected.addEventListener('click', function() {
         const moduleName = this.getAttribute('data-module');
-        modules[moduleName] = !modules[moduleName];
-        if (modules[moduleName]) {
-            modules[moduleName].toggle();
-            this.classList.toggle('selected', modules[moduleName].enabled);
+        enabledmodules[moduleName] = !enabledmodules[moduleName];
+        if (enabledmodules[moduleName]) {
+            enabledmodules[moduleName].toggle();
+            this.classList.toggle('selected');
         }
     });
 });
