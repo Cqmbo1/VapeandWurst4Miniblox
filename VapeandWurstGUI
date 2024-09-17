@@ -116,6 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.body.appendChild(Gui);
 
+});
+
     document.querySelectorAll('.module-selector').forEach(selected => {
         selected.addEventListener('click', function() {
             const moduleName = this.getAttribute('data-module');
@@ -128,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.classList.toggle('selected');
         });
     });
-});
+
 
 let replacements = {};
 let dumpedVarNames = {};
