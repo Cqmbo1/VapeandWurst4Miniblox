@@ -114,21 +114,22 @@ document.addEventListener('DOMContentLoaded', () => {
         </style>
     `;
 
-    document.body.appendChild(Gui);
-});
-
     document.querySelectorAll('.module-selector').forEach(selected => {
-        selected.addEventListener('click', function() {
+        selected.addEventListener('click', function () {
             const moduleName = this.getAttribute('data-module');
             if (!enabledModules[moduleName]) {
-                enabledModules[moduleName] = new Module(moduleName, () => {
-                    console.log(`${moduleName} toggled`);
+                // Create a new module if it doesn't exist
+                enabledModules[moduleName] = new Module(moduleName, (enabled) => {
+                    console.log(`${moduleName} is now ${enabled ? 'enabled' : 'disabled'}`);
                 });
             }
+            // Toggle the module
             enabledModules[moduleName].toggle();
+            // Toggle UI indication
             this.classList.toggle('selected');
         });
     });
+});
 
 
 let replacements = {};
@@ -663,6 +664,21 @@ addReplacement('document.addEventListener("contextmenu",j=>j.preventDefault());'
                 return this.options[name];
             }
         }
+
+            document.querySelectorAll('.module-selector').forEach(selected => {
+        selected.addEventListener('click', function () {
+            const moduleName = this.getAttribute('data-module');
+            if (!enabledModules[moduleName]) {
+                // Create a new module if it doesn't exist
+                enabledModules[moduleName] = new Module(moduleName, (enabled) => {
+                });
+            }
+            // Toggle the module
+            enabledModules[moduleName].toggle();
+            // Toggle UI indication
+            this.classList.toggle('selected');
+        });
+    });
 
 			let clickDelay = Date.now();
 			new Module("AutoClicker", function(callback) {
