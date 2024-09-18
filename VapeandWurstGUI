@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </style>
     `;
 
-    document.appendChild(Gui);
+    document.body.appendChild(Gui);
 
 });
 
