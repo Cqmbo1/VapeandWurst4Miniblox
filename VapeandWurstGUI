@@ -548,7 +548,6 @@ addReplacement('document.addEventListener("contextmenu",j=>j.preventDefault());'
                 });
             });
         });
-    })();
 
     document.addEventListener('DOMContentLoaded', () => {
         const Gui = document.createElement('div');
