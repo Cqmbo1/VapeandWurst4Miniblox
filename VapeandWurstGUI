@@ -551,6 +551,9 @@ addReplacement('document.addEventListener("contextmenu",j=>j.preventDefault());'
     })();
 
     document.addEventListener('DOMContentLoaded', () => {
+        const Gui = document.createElement('div');
+        Gui.id = 'Gui';
+        Gui.innerHTML = 
             <div class="wurst">
                 <div id="wurst-icon">
                     <img src="https://cloud.githubusercontent.com/assets/10100202/23872350/47e8462e-082e-11e7-8ac2-07a66e4beaaa.png">
